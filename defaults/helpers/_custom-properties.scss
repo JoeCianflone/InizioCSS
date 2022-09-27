@@ -1,0 +1,22 @@
+@use 'sass:map';
+
+$__shared-custom-props: ();
+
+
+@mixin setup-properties($config: ()) {
+    $__shared-custom-props: map.deep-merge($__shared-custom-props, $config) !global;
+}
+
+@mixin init-properties() {
+    @each $k, $v in $__shared-custom-props {
+        #{$k}: $v;
+    }
+}
+
+@function use($key) {
+    @if (map.has-key($__shared-custom-props, $key) != true) {
+        @error "#{$key} does not exist";
+    }
+
+    @return map.get($__shared-custom-props, $key);
+}

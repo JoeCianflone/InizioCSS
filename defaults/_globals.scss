@@ -1,0 +1,181 @@
+@use 'helpers';
+@use '../tokens';
+
+:root {
+    @include helpers.init-properties;
+}
+
+*,
+::after,
+::before {
+    background-color: inherit;
+    // border: 0 solid;
+    box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    margin: 0;
+    // padding: 0;
+
+    @media (prefers-reduced-motion: reduce) {
+        -webkit-animation-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        -webkit-animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+[hidden] {
+    display:none
+
+    + * {
+        margin-top:0!important
+    }
+}
+html {
+    overflow-x: hidden;
+    &:focus-within {
+        scroll-behavior: smooth;
+        @media (prefers-reduced-motion: reduce) {
+            scroll-behavior: auto;
+        }
+    }
+}
+
+body {
+    background:  var(--body--background-color, #fff);
+    color:  var(--body--text-color, #000);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--body--font-family, system-ui);
+    font-size: var(--body--font-size, 1rem);
+    -moz-osx-font-smoothing: grayscale !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-weight: var(--body--font-weight, 400);
+    letter-spacing: var(--body--letter-spacing, 0);
+    line-height: var(--body--line-height, 1);
+    min-height: var(--body--min-height, 100vh);
+    min-width: var(--body--min-width, 20rem);
+    overflow-x: hidden;
+    text-rendering: optimizespeed;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+    color: var(--headline--text-color, #000);
+    font-family: var(--headline--font-family, system-ui);
+    font-weight: var(--headline--font-weight, 600);
+    letter-spacing: var(--headline--letter-spacing, 0);
+    line-height: var(--headline--line-height, 1);
+}
+
+h1 {
+    font-size: var(--headline--size-1, 5.26rem);
+}
+
+h2 {
+    font-size: var(--headline--size-2, 3.95rem);
+}
+
+h3 {
+    font-size: var(--headline--size-3, 2.96rem);
+}
+
+h4 {
+    font-size: var(--headline--size-4, 2.22rem);
+}
+
+h5 {
+    font-size: var(--headline--size-5, 1.67rem);
+}
+
+h6 {
+    font-size: var(--headline--size-6, 1.25rem);
+}
+
+a {
+    color: var(--anchor--text-color, blue);
+    text-underline-offset: 0.15em;
+
+    &.skip {
+        background-color: inherit;
+        color: inherit;
+        display: inline-block;
+        padding: 0;
+        position: absolute;
+        top: -50rem;
+    }
+}
+
+a,
+input,
+button,
+textarea {
+    &:focus {
+        outline: none;
+    }
+}
+
+img,
+picture {
+    width: 100%;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+a,
+area,
+button,
+input,
+label,
+select,
+summary,
+textarea,
+[tabindex] {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+button {
+    --action--padding-inline: #{helpers.to-rem(4px)};
+    --action--padding-block: #{helpers.to-rem(2px)};
+    --action--border-radius: #{helpers.to-rem(4px)};
+    --action--border-width: #{helpers.to-rem(1px)};
+    --action--height: #{helpers.to-rem(40px)};
+
+    border: var(--action--border-width) solid;
+    border-radius: var(--action--border-radius);
+    padding: var(--action--padding-block) var(--action--padding-inline);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: var(--action--height);
+}
+input, textarea {
+    --control--padding-inline: #{helpers.to-rem(4px)};
+    --control--padding-block: #{helpers.to-rem(2px)};
+    --control--border-radius: #{helpers.to-rem(4px)};
+    --control--border-width: #{helpers.to-rem(1px)};
+    --action--height: #{helpers.to-rem(40px)};
+
+    border: var(--control--border-width) solid;
+    border-radius: var(--control--border-radius);
+    padding: var(--control--padding-block) var(--control--padding-inline);
+    height: var(--action--height);
+}
+
+input, textarea, button {
+    font-size: inherit;
+}
+
+button,
+label {
+    cursor: pointer;
+}
+
+textarea {
+    overflow: auto;
+    resize: vertical;
+}

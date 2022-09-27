@@ -1,0 +1,14 @@
+{
+    "plugins": [
+        "stylelint-order"
+    ],
+    "extends": [
+        "stylelint-config-standard-vue"
+    ],
+    "rules": {
+        "string-quotes": "single",
+        "order/properties-alphabetical-order": true,
+        "indentation": 4,
+        "function-no-unknown": null
+    }
+}

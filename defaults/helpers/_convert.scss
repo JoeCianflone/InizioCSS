@@ -1,0 +1,27 @@
+@use 'sass:math';
+@use 'sass:string';
+@use 'sass:list';
+@use 'custom-properties' as *;
+
+@function to-rem($px, $base-font-size: 16px) {
+    @return math.div($px, $base-font-size) * 1rem;
+}
+
+/// @author Hugo Giraudel
+/// Now with Sass Modules by @joecianflone
+@function replace($string, $search, $replace: '') {
+    $index: string.index($string, $search);
+
+    @if $index {
+        @return string.slice($string, 1, $index - 1) + $replace + replace(string.slice($string, $index + string.length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+/// takes a string and will encode the values
+@function e($name, $encode: (':', '\\:')) {
+    $key: list.nth($encode, 1);
+    $value: list.nth($encode, 2);
+    @return string.unquote(replace($name, $key, $value));
+}

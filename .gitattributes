@@ -1,0 +1,11 @@
+* text=auto
+
+*.css diff=css
+*.scss diff=scss
+*.html diff=html
+*.md diff=markdown
+
+/.github export-ignore
+/examples export-ignore
+CHANGELOG.md export-ignore
+.stylelintrc export-ignore

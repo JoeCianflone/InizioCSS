@@ -1,0 +1,24 @@
+@use 'sass:color';
+@use 'custom-properties' as *;
+
+@function __change-hsla($key, $h: false, $s: false, $l: false, $a: 1) {
+    $color: use($key);
+
+    $h: if($h != false, $h, color.hue($color));
+    $s: if($s != false, $s, color.saturation($color));
+    $l: if($l != false, $l, color.lightness($color));
+
+    @return color.change($color, $hue: $h, $saturation: $s, $lightness: $l, $alpha: $a);
+}
+
+@function adjust-alpha($key, $alpha) {
+    @return __change-hsla($key, $a: $alpha);
+}
+
+@function adjust-saturation($key, $saturation) {
+    @return __change-hsla($key, $s: $saturation);
+}
+
+@function adjust-lightness($key, $lightness) {
+    @return __change-hsla($key, $l: $lightness);
+}

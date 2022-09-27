@@ -1,0 +1,74 @@
+@use 'defaults/helpers';
+
+@include helpers.setup-properties((
+    --ratio-small: 1.25,
+    --ratio-large: 1.33,
+    --transition-fast: 400ms ease-in-out,
+    --transition-faster: 325ms ease-in-out,
+    --transition-fastest: 250ms ease-in-out,
+
+    // colors .................................................................
+    --color-true-white: #fff,
+    --color-true-black: #000,
+    --color-default-links: #000080,
+    --color-gray-5: #FAFAFA,
+    --color-gray-10: #F4F4F5,
+    --color-gray-20: #E4E4E7,
+    --color-gray-30: #D4D4D8,
+    --color-gray-40: #A1A1AA,
+    --color-gray-50: #71717A,
+    --color-gray-60: #52525B,
+    --color-gray-70: #3F3F46,
+    --color-gray-80: #27272A,
+    --color-gray-90: #18181B,
+
+    // widths used for media queries ..........................................
+    --xs: helpers.to-rem(480px),
+    --sm: helpers.to-rem(576px),
+    --md: helpers.to-rem(768px),
+    --wd: helpers.to-rem(900px),
+    --xw: helpers.to-rem(1024px),
+    --lg: helpers.to-rem(1280px),
+    --xl: helpers.to-rem(1366px),
+
+    // widths used for general browser max/min ................................
+    --min: helpers.to-rem(320px),
+    --max: helpers.to-rem(1500px),
+
+    // fluid font..............................................................
+    --step--2: clamp(0.64rem, calc(0.62rem + 0.10vw), 0.70rem),
+    --step--1: clamp(0.80rem, calc(0.76rem + 0.21vw), 0.94rem),
+    --step-0: clamp(1.00rem, calc(0.92rem + 0.38vw), 1.25rem),
+    --step-1: clamp(1.25rem, calc(1.12rem + 0.64vw), 1.67rem),
+    --step-2: clamp(1.56rem, calc(1.36rem + 1.01vw), 2.22rem),
+    --step-3: clamp(1.95rem, calc(1.64rem + 1.54vw), 2.96rem),
+    --step-4: clamp(2.44rem, calc(1.98rem + 2.30vw), 3.95rem),
+    --step-5: clamp(3.05rem, calc(2.38rem + 3.38vw), 5.26rem),
+    --step-6: clamp(3.82rem, calc(2.84rem + 4.89vw), 7.01rem),
+    --step-7: clamp(4.77rem, calc(3.37rem + 7.01vw), 9.35rem),
+
+    // font-families...........................................................
+    --font-family-system: #{system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'},
+    --font-family-1: #{'Inter', sans-serif},
+
+    // line heights............................................................
+    --line-height-none: 1,
+    --line-height-s: var(--ratio-small),
+    --line-height-m: var(--ratio-large),
+    --line-height-l: 1.5,
+    --line-height-xs: 2,
+
+    --letter-spacing-1: -0.03em,
+
+    // fluid space.............................................................
+    --space-3xs: clamp(0.25rem, calc(0.23rem + 0.10vw), 0.31rem),
+    --space-2xs: clamp(0.50rem, calc(0.46rem + 0.19vw), 0.63rem),
+    --space-xs: clamp(0.75rem, calc(0.69rem + 0.29vw), 0.94rem),
+    --space-s: clamp(1.00rem, calc(0.92rem + 0.38vw), 1.25rem),
+    --space-m: clamp(1.50rem, calc(1.39rem + 0.57vw), 1.88rem),
+    --space-l: clamp(2.00rem, calc(1.85rem + 0.76vw), 2.50rem),
+    --space-xl: clamp(3.00rem, calc(2.77rem + 1.15vw), 3.75rem),
+    --space-2xl: clamp(4.00rem, calc(3.69rem + 1.53vw), 5.00rem),
+    --space-3xl: clamp(6.00rem, calc(5.54rem + 2.29vw), 7.50rem),
+));
+

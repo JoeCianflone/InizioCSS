@@ -1,0 +1,58 @@
+@use 'sass:selector';
+@use 'sass:list';
+@use 'convert';
+
+@mixin when($selector, $scope: 'root', $parent: &, $type: "is") {
+    @if ($type != "is" and $type != "where") {
+        @error "in WHEN mixin, $type can only be 'is' or 'where', $type set to:  #{$type}";
+    }
+
+    @if ($scope != "root" and $scope != "parent" and $scope != "grandparent") {
+        @error "in WHEN mixin, $scope can only be 'root', 'parent', or 'grandparent', $scope set to: #{$scope}";
+    }
+
+    $ancestors: _selector-to-list($parent);
+
+    $walk-start-start: 1;
+    $walk-start-end: 1;
+    $walk-end-start: list.length($ancestors);
+
+    @if ($scope == 'grandparent') {
+        $walk-start-start: 1;
+        $walk-start-end:  list.length($ancestors) - 2;
+    } @else if($scope == 'parent') {
+        $walk-start-start: 1;
+        $walk-start-end:  list.length($ancestors) - 1;
+    }
+
+    $start: _walk-selector-to($ancestors, $walk-start-start, $walk-start-end);
+    $end: '';
+
+    @if ($walk-end-start > 1) {
+        $end: _walk-selector-to($ancestors, $walk-end-start);
+    }
+
+    @at-root {
+        #{$start}:#{$type}(#{convert.e($selector)}) #{$end} {
+            @content;
+        }
+    }
+}
+
+/// Take a selector list, parse it, then walk down the list from $start to $end
+@function _walk-selector-to($selector, $split-start, $split-end: -1) {
+    $walked: ();
+    $split-end: if($split-end < 0, list.length($selector), $split-end);
+
+    @for $i from $split-start through $split-end {
+        $walked: list.append($walked, nth($selector, $i));
+    }
+
+    @return $walked;
+}
+
+@function _selector-to-list($selector-string) {
+    $selector: selector.parse($selector-string);
+
+    @return nth($selector, 1);
+}
